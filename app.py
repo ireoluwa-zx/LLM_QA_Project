@@ -1,14 +1,16 @@
 import streamlit as st
 import google.generativeai as genai
-import string
+# ... other imports
 
-# --- CONFIGURATION ---
 # Use Streamlit Secrets for the API key
 if 'GEMINI_API_KEY' in st.secrets:
+    # 1. Configure the Generative AI library with the secret key
     genai.configure(api_key=st.secrets['GEMINI_API_KEY'])
-    model = genai.GenerativeModel(st.secrets['GEMINI_MODEL'])
+    # 2. Use a secure model name from the secrets (or a safe default)
+    model_name = st.secrets.get('GEMINI_MODEL', 'models/gemini-2.5-flash')
+    model = genai.GenerativeModel(model_name)
 else:
-    st.error("API Key not found in Streamlit Secrets.")
+    st.error("API Key not found in Streamlit Secrets. Please check your app settings.")
     model = None
 
 # --- SIDEBAR: MODEL DEBUGGER ---
@@ -63,4 +65,5 @@ if st.button("Get Answer"):
         st.error("Model not loaded. Check the sidebar for API errors.")
     else:
         st.warning("Please enter a question.")
+
 
