@@ -3,8 +3,13 @@ import google.generativeai as genai
 import string
 
 # --- CONFIGURATION ---
-API_KEY = "AIzaSyBqbigoxlplm9qwn4toXCJ3cogDfHyurXw" 
-genai.configure(api_key=API_KEY)
+# Use Streamlit Secrets for the API key
+if 'GEMINI_API_KEY' in st.secrets:
+    genai.configure(api_key=st.secrets['GEMINI_API_KEY'])
+    model = genai.GenerativeModel(st.secrets['GEMINI_MODEL'])
+else:
+    st.error("API Key not found in Streamlit Secrets.")
+    model = None
 
 # --- SIDEBAR: MODEL DEBUGGER ---
 st.sidebar.header("System Check")
@@ -58,3 +63,4 @@ if st.button("Get Answer"):
         st.error("Model not loaded. Check the sidebar for API errors.")
     else:
         st.warning("Please enter a question.")
+
