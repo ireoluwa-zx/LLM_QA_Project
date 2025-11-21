@@ -3,7 +3,7 @@ import google.generativeai as genai
 import string
 
 # --- CONFIGURATION ---
-API_KEY = "YAIzaSyBqbigoxlplm9qwn4toXCJ3cogDfHyurXw" 
+API_KEY = "AIzaSyBqbigoxlplm9qwn4toXCJ3cogDfHyurXw" 
 genai.configure(api_key=API_KEY)
 model = genai.GenerativeModel('gemini-1.5-flash')
 
@@ -36,3 +36,4 @@ if st.button("Get Answer"):
                 st.error(f"Error: {e}")
     else:
         st.warning("Please enter a question.")
+
