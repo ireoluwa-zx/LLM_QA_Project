@@ -5,7 +5,7 @@ import string
 # --- CONFIGURATION ---
 API_KEY = "AIzaSyBqbigoxlplm9qwn4toXCJ3cogDfHyurXw" 
 genai.configure(api_key=API_KEY)
-model = genai.GenerativeModel('gemini-1.5-flash')
+model = genai.GenerativeModel('gemini-pro')
 
 # --- PREPROCESSING FUNCTION ---
 def preprocess_text(text):
@@ -36,4 +36,5 @@ if st.button("Get Answer"):
                 st.error(f"Error: {e}")
     else:
         st.warning("Please enter a question.")
+
 
