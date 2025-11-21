@@ -1,5 +1,6 @@
 import streamlit as st
 import google.generativeai as genai
+import string
 # ... other imports
 
 # Use Streamlit Secrets for the API key
@@ -65,5 +66,6 @@ if st.button("Get Answer"):
         st.error("Model not loaded. Check the sidebar for API errors.")
     else:
         st.warning("Please enter a question.")
+
 
 
